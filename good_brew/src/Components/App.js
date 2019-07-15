@@ -7,7 +7,7 @@ import Controls from './Controls/Controls';
 
 function App() {
 
-  const endpoint = 'https://api.openbrewerydb.org/breweries?per_page=50&by_state=';
+  const endpoint = 'https://api.openbrewerydb.org/breweries?by_state=';
 
   const [brewNames, setbrewNames] = useState();
   const [selectedstate, setselectedstate] = useState('');
@@ -25,24 +25,28 @@ function App() {
 
   function handleChange(event){
     setselectedstate(event);
+    setpage(1);
     fetch(endpoint, event);
-    console.log(selectedstate)
   }
 
-  // function nextPage(){
-  //   let next = page + 1;
-  //   setpage(next);
-  //   fetch(endpoint, `${selectedstate}, &page=${next}`);
-  //   console.log(page)
-  // }
-  // function prevPage(){
-  //   const prev = page + 1;
-  //   setpage(prev);
-  //   console.log(page)
-  // }
+  function nextPage(s){
+    const next = page + 1;
+    const curSelectedState = s;
+    setpage(next);
+    setselectedstate(curSelectedState);
+    fetch(endpoint, `${curSelectedState}&page=${next}`);
+
+  }
+  function prevPage(s){
+    const prev = page - 1;
+    const curSelectedState = s;
+    setpage(prev);
+    setselectedstate(curSelectedState);
+    fetch(endpoint, `${curSelectedState}&page=${prev}`);
+  }
 
   const renderList = ()=>{
-    console.log(brewNames,selectedstate, page)
+    console.log(brewNames, selectedstate)
     return(
       <ul>
           {brewNames.map(item =>(
@@ -66,14 +70,24 @@ function App() {
       <header className="App-header">
         <h1>Good Brew</h1>
 
-        { selectedstate !== '' ? (<h4>You are currently viewing page {page} of breweries in {selectedstate}</h4>) : (<h4>Please select a state</h4>)}
+        { selectedstate !== '' ? (<h6>You are currently viewing page {page} of breweries in {selectedstate}</h6>) : (<h4>Please select a state</h4>)}
 
         <Controls
           state={selectedstate}
           value={selectedstate}
           handleChange={e=> handleChange(e.target.value)}
-        //  next={()=> nextPage()}
-        //  prev={()=> prevPage()}
+          nextDisabled={brewNames ? brewNames.length !== 20 : false}
+          prevDisabled={page > 1 ? false : true}
+          next={(event)=> {
+            event.preventDefault();
+            const s = selectedstate;
+            nextPage(s);
+          }}
+          prev={(event)=> {
+            event.preventDefault();
+            const s = selectedstate;
+            prevPage(s)
+          }}
           />
 
           { brewNames ? renderList(brewNames) : null}

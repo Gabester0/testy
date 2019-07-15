@@ -13,10 +13,10 @@ const list = props=>{
           {states.map(state=> (<option key={state} value={state}>{state}</option>) )}
         </select>
       </fieldset>
-      {/* <fieldset>
-        <button onClick={props.next}>Next page</button>
-        <button onClick={props.prev}>Previous page</button>
-      </fieldset> */}
+      <fieldset>
+        <button onClick={props.next} disabled={props.nextDisabled}>Next page</button>
+        <button onClick={props.prev} disabled={props.prevDisabled}>Previous page</button>
+      </fieldset>
     </form>
   )
 } 
