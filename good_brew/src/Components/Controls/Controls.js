@@ -8,17 +8,15 @@ const list = props=>{
   return (
     <form>
       <fieldset>
-        <label>Choose a State</label>
+        <label>{props.selected}</label>
         <br/>
         <select id="state" value={props.state} onChange={props.handleChange}>
           {states.map(state=> (<option key={state} value={state}>{state}</option>) )}
         </select>
-      </fieldset>
-      <fieldset>
         <div className="row">
-          <button className="oneThird" onClick={props.prev} disabled={props.prevDisabled}>&lArr;</button>
-          <p className="oneThird">{props.pageCount}</p>
-          <button className="oneThird" onClick={props.next} disabled={props.nextDisabled}>&rArr;</button>
+          <button className="flexItem flexItem__btn" onClick={props.prev} disabled={props.prevDisabled}>&#171;</button>
+          <p className="flexItem">{`page ${props.pageCount}`}</p>
+          <button className="flexItem flexItem__btn" onClick={props.next} disabled={props.nextDisabled}>&#187;</button>
         </div>
       </fieldset>
     </form>

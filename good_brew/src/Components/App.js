@@ -73,6 +73,7 @@ function App() {
         {/* selectedstate !== '' ? (<h6>You are currently viewing page {page} of breweries in {selectedstate}</h6>) : (<h4>Please select a state</h4>)*/}
 
         <Controls
+          selected={selectedstate ? selectedstate : "Choose a state"}
           state={selectedstate}
           value={selectedstate}
           handleChange={e=> handleChange(e.target.value)}

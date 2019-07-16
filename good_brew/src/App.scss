@@ -19,11 +19,27 @@
 
 fieldset {
   width: 400px;
+
+  & label {
+    text-transform: capitalize;
+  }
 }
 
 
 .row{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  margin-top: 25px;
+
+  & p {
+    margin-top: 20px;
+  }
 }
+
+button {
+  height: 50%;
+  font-size: 200%;
+  padding: 0 10px 10px 10px;
+}
+
