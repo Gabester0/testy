@@ -10,7 +10,7 @@ function App() {
   const endpoint = 'https://api.openbrewerydb.org/breweries?by_state=';
 
   const [brewNames, setbrewNames] = useState();
-  const [selectedstate, setselectedstate] = useState('');
+  const [selectedstate, setselectedstate] = useState('pennsylvania');
   const [page, setpage] = useState();
 
   const fetch = async(endpoint, selectedstate)=>{
