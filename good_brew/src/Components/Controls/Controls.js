@@ -1,4 +1,5 @@
 import React from 'react';
+//import classes from './Controls.css';
 
 const list = props=>{
 
@@ -14,8 +15,11 @@ const list = props=>{
         </select>
       </fieldset>
       <fieldset>
-        <button onClick={props.next} disabled={props.nextDisabled}>Next page</button>
-        <button onClick={props.prev} disabled={props.prevDisabled}>Previous page</button>
+        <div className="row">
+          <button className="oneThird" onClick={props.prev} disabled={props.prevDisabled}>&lArr;</button>
+          <p className="oneThird">{props.pageCount}</p>
+          <button className="oneThird" onClick={props.next} disabled={props.nextDisabled}>&rArr;</button>
+        </div>
       </fieldset>
     </form>
   )

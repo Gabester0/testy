@@ -46,7 +46,7 @@ function App() {
   }
 
   const renderList = ()=>{
-    console.log(brewNames, selectedstate)
+//  console.log(brewNames, selectedstate)
     return(
       <ul>
           {brewNames.map(item =>(
@@ -70,7 +70,7 @@ function App() {
       <header className="App-header">
         <h1>Good Brew</h1>
 
-        { selectedstate !== '' ? (<h6>You are currently viewing page {page} of breweries in {selectedstate}</h6>) : (<h4>Please select a state</h4>)}
+        {/* selectedstate !== '' ? (<h6>You are currently viewing page {page} of breweries in {selectedstate}</h6>) : (<h4>Please select a state</h4>)*/}
 
         <Controls
           state={selectedstate}
@@ -78,6 +78,7 @@ function App() {
           handleChange={e=> handleChange(e.target.value)}
           nextDisabled={brewNames ? brewNames.length !== 20 : false}
           prevDisabled={page > 1 ? false : true}
+          pageCount={page}
           next={(event)=> {
             event.preventDefault();
             const s = selectedstate;
