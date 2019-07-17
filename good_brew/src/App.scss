@@ -66,9 +66,12 @@ button {
 		transform: translateY(2px);
 	}
 
+	& a,
 	& p {
+		width: 100%;
 		text-overflow: ellipsis;
 	}
+
 
 	&-details{
 		width: 400px;

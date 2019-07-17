@@ -3,6 +3,15 @@ import Map from './Map';
 
 function Brewcard(props){
 
+    function truncate(string){
+        if(string.length <= 46){
+            return string;
+        } else {
+            const arr = string.split("");
+            return (arr.splice(0, 44).join("") + '...');
+        }
+    }
+
     const general = (
         <div
             onClick={props.click}
@@ -16,7 +25,7 @@ function Brewcard(props){
                     {props.phone}
                 </p>
                 <a href={props.website_url} rel="noopener noreferrer" target="_blank">
-                    {props.website_url}
+                    {truncate(props.website_url)}
                 </a>
             </div>
         </div>
