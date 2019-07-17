@@ -1,14 +1,43 @@
 import React from 'react';
+import Map from './Map';
 
-const brewcard = (props) => (
-        <div id={props.id}>
-            <h3>{props.name}</h3>
+function Brewcard(props){
+
+    const general = (
+        <div
+            onClick={props.click}
+            id={props.id} 
+            className="card">
+            <div className="card-general">
+                <h3>{props.name}</h3>
                 <p>{props.address}<br/>
-                {props.city} {props.postal_code}, {props.state}<br/>
-                {props.country}<br/>
-                {props.phone}</p>
-                <a href={props.website_url} rel="noopener noreferrer" target="_blank">{props.website_url}</a>
+                    {props.city} {props.postal_code}, {props.state}<br/>
+                    {props.country}<br/>
+                    {props.phone}
+                </p>
+                <a href={props.website_url} rel="noopener noreferrer" target="_blank">
+                    {props.website_url}
+                </a>
+            </div>
         </div>
 )
 
-export default brewcard;
+    const detail = (
+        <div 
+            onClick={props.click}
+            id={props.id} 
+            className="card">
+            <div className="card-general">
+                <Map
+                	lat={props.lat}
+                    lng={props.lng}
+                />
+            </div>
+	    </div>
+    )
+      
+
+    return (props.detail ? detail : general)
+}
+
+export default Brewcard;

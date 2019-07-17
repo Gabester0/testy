@@ -1,45 +1,93 @@
 .App {
-  text-align: center;
-  font-family: Helvetica;
+	text-align: center;
+	font-family: Helvetica;
 }
 
 .App-header {
-  background-color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+	background-color: #fff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 fieldset {
-  width: 400px;
+	width: 400px;
+	border: none;
 
-  & label {
-    text-transform: capitalize;
-  }
+	& label {
+		text-transform: capitalize;
+	}
 }
 
 
 .row{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  margin-top: 25px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	margin-top: 25px;
 
-  & p {
-    margin-top: 20px;
-  }
+	& p {
+		margin-top: 20px;
+	}
 }
 
 button {
-  height: 50%;
-  font-size: 200%;
-  padding: 0 10px 10px 10px;
+	height: 50%;
+	font-size: 200%;
+	padding: 0 10px 10px 10px;
 }
 
+// Cards
+
+.card-grid {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 650px 650px;
+	grid-template-rows: repeat(auto-fill, 1fr);
+	grid-gap: 5vw 10vw;
+}
+
+.card {
+	box-sizing: border-box;
+	border: 1px solid black;
+	height: 500px;
+	width: 100%;
+	padding: 20px;
+	width: 100%;
+
+	&:hover{
+		transform: translateY(2px);
+	}
+
+	& p {
+		text-overflow: ellipsis;
+	}
+
+	&-details{
+		width: 400px;
+		height: 400px;
+	}
+}
+
+#root > div > header > section > div > div > div > div > div:nth-child(1) {
+	width: 400px!important;
+	height: 400px!important;
+}
+
+@media (max-width: 1300px){
+	.card-grid {
+		grid-template-columns: 650px;
+	}
+}
+@media (max-width: 600px){
+	.card-grid {
+		grid-template-columns: 350px;
+	}
+}
