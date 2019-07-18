@@ -12,7 +12,6 @@ function App() {
 	const [brewNames, setbrewNames] = useState();
 	const [selectedstate, setselectedstate] = useState('pennsylvania');
 	const [page, setpage] = useState();
-	const [details, setdetails] = useState(false);
 
 	const fetch = async(endpoint, selectedstate)=>{
 		const breweries = await axios.get(endpoint + selectedstate);
@@ -46,6 +45,19 @@ function App() {
 		fetch(endpoint, `${curSelectedState}&page=${prev}`);
 	}
 
+	function setdetails(event){
+		const id = event.target.id.slice(11, 15);
+		const type = event.target.id.slice(4, 11);
+		if(type === "general"){
+			document.getElementById(`general${id}`).style.display = 'none';
+			document.getElementById(`details${id}`).style.display = 'block';
+		} 
+		if(type === "details"){
+			document.getElementById(`details${id}`).style.display = 'none';
+			document.getElementById(`general${id}`).style.display = 'block';
+		}
+	}
+
 	const renderList = ()=>{
 		return(
 			<div className="card-grid">
@@ -53,6 +65,8 @@ function App() {
 					return (
 					<Brewcard
 						key={item.id}
+						id={item.id}
+						type={item.brewery_type}
 						name={item.name}
 						address={item.street}
 						city={item.city}
@@ -63,8 +77,7 @@ function App() {
 						website_url={item.website_url}
 						lat={item.latitude}
 						lng={item.longitude}
-						detail={details}
-						click={()=> setdetails(!details)}
+						click={(event)=> setdetails(event)}
 						/>
 					)
 				})}
@@ -75,7 +88,9 @@ function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<h1>Good Brew</h1>
+				<div className="header">
+					<h1>Good Brew</h1>
+				</div>
 
 				<Controls
 					selected={selectedstate ? selectedstate : "Choose a state"}
@@ -99,6 +114,10 @@ function App() {
 				<section>
 					{ brewNames ? renderList(brewNames) : null}
 				</section>
+				<footer>
+					<p>&copy; 2019 Gabriel Eipper</p>
+					<p>Made with Create React App, Open Brewery DB, Google Maps React, and SASS</p>
+				</footer>
 			</header>
 		</div>
 	);

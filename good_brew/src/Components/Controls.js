@@ -7,15 +7,21 @@ const list = props=>{
 	return (
 		<form>
 			<fieldset>
-				<label>{props.selected}</label>
-				<br/>
-				<select id="state" value={props.state} onChange={props.handleChange}>
-					{states.map(state=> (<option key={state} value={state}>{state}</option>) )}
-				</select>
-				<div className="row">
-					<button className="flexItem flexItem__btn" onClick={props.prev} disabled={props.prevDisabled}>&#171;</button>
-					<p className="flexItem">{`page ${props.pageCount}`}</p>
-					<button className="flexItem flexItem__btn" onClick={props.next} disabled={props.nextDisabled}>&#187;</button>
+				<div  className="flex-row">
+					<div className="flex-item">
+						<label>Current State</label>
+						<br/>
+						<select id="state" value={props.state} onChange={props.handleChange}>
+							{states.map(state=> (<option key={state} value={state}>{state}</option>) )}
+						</select>
+					</div>
+					<div className="flex-item">
+						<div className="row">
+							<button onClick={props.prev} disabled={props.prevDisabled}>&#171;</button>
+							<p>{`Page ${props.pageCount}`}</p>
+							<button onClick={props.next} disabled={props.nextDisabled}>&#187;</button>
+						</div>
+					</div>
 				</div>
 			</fieldset>
 		</form>

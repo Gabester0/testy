@@ -12,41 +12,39 @@ function Brewcard(props){
         }
     }
 
-    const general = (
-        <div
-            onClick={props.click}
-            id={props.id} 
-            className="card">
-            <div className="card-general">
-                <h3>{props.name}</h3>
-                <p>{props.address}<br/>
+    return (
+
+        <div className="card">
+            <div id={`general${props.id}`} className="card-general">
+                <span className="type">{props.type}</span>
+                <button id={`btn-general${props.id}`} className="info-button" onClick={props.click}>More Info</button>
+                <h2>{props.name}</h2>
+                <p className="brewery-contact">
+                    <span className="label">Address:</span>
+                    {props.address}<br/>
                     {props.city} {props.postal_code}, {props.state}<br/>
                     {props.country}<br/>
+                    <span className="label">Phone:</span>
                     {props.phone}
+                    <br/>
+                    <a href={props.website_url} rel="noopener noreferrer" target="_blank">
+                        {truncate(props.website_url)}
+                    </a>
                 </p>
-                <a href={props.website_url} rel="noopener noreferrer" target="_blank">
-                    {truncate(props.website_url)}
-                </a>
             </div>
-        </div>
-)
 
-    const detail = (
-        <div 
-            onClick={props.click}
-            id={props.id} 
-            className="card">
-            <div className="card-general">
+            <div id={`details${props.id}`} style={{display: 'none'}} className="card-general">
+                <span className="type">{props.type}</span>
+                <button id={`btn-details${props.id}`} className="info-button" onClick={props.click}>Back</button>
+                <h2>{props.name}</h2>
                 <Map
+                    id={`details${props.id}`}
                 	lat={props.lat}
                     lng={props.lng}
                 />
             </div>
 	    </div>
-    )
-      
-
-    return (props.detail ? detail : general)
-}
+        )
+      }
 
 export default Brewcard;
