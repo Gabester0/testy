@@ -1,1 +1,1 @@
-# [link](https://good-brew.herokuapp.com/)
+# [Good Brew](https://good-brew.herokuapp.com/)
